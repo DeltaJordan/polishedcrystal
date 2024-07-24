@@ -1969,9 +1969,6 @@ GetExpShareParticipants:
 	pop bc
 	ld a, [hl]
 	pop hl
-
-	cp EXP_SHARE
-	jr nz, .next
 	ld a, d
 	or c
 	ld d, a
@@ -6717,16 +6714,16 @@ GiveExperiencePoints:
 	; If p or e is zero, just do 1/p or 1/e.
 	; Otherwise; P=e if participant, otherwise 0, E=p if holder, otherwise 0
 	; exp = current(E+P)/(2ep)
+	ld a, [wCurPartyMon]
+	cp 0
+	ld a, 1
+	jr z, .single_factor
 	ld a, [wGivingExperienceToExpShareHolders]
-	ld d, a
-	call GetParticipantsNotFainted
-	ld e, a
 	and a
-	ld a, d
+	ld a, 2
 	jr z, .single_factor
-	and a
-	ld a, e
-	jr z, .single_factor
+	ld a, 1
+	jr .single_factor
 
 	; We are dealing with both participants and exp share holders.
 	; First, verify that we are a participant.

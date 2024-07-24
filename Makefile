@@ -1,8 +1,8 @@
 NAME := polishedcrystal
-MODIFIERS :=
-VERSION := 3.0.0-beta
+MODIFIERS :=9bit
+VERSION := $(shell git log -1 --pretty=format:"%h" )
 
-ROM_NAME = $(NAME)$(MODIFIERS)-$(VERSION)
+ROM_NAME = $(NAME)-$(MODIFIERS)-$(VERSION)
 EXTENSION := gbc
 
 TITLE := PKPCRYSTAL

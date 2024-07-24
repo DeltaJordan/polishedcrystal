@@ -109,13 +109,13 @@ ProfOaksAide1NoRoomText:
 	done
 
 ProfOaksAide1ExplainText:
-	text "That Exp.Share"
-	line "helps a #mon"
+	text "I found that"
+	line "in some ruins"
 
-	para "gain experience"
-	line "without even"
-	cont "battling."
+	para "earlier. Sell"
+	line "it or keep it,"
+	cont "up to you."
 
-	para "Use it to com-"
-	line "plete the #dex!"
+	para "Good luck on"
+	line "the #dex!"
 	done

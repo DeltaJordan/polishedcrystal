@@ -165,7 +165,7 @@ endc
 	li "Shiny Stone"
 	li "Everstone"
 
-	li "Exp.Share"
+	li "AncientRelic"
 
 	li "Silk Scarf"
 	li "Black Belt"

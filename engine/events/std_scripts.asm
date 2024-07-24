@@ -59,17 +59,7 @@ StdScripts::
 
 PokeCenterNurseScript:
 	opentext
-	checkevent EVENT_NURSE_SAW_TRAINER_STAR
-	iftruefwd .star_center
-	checktime 1 << MORN
-	iftruefwd .morn
-	checktime 1 << DAY
-	iftruefwd .day
-	checktime 1 << EVE
-	iftruefwd .eve
-	checktime 1 << NITE
-	iftruefwd .nite
-	sjumpfwd .ok
+	sjumpfwd .heal_pokemon
 
 .morn
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
@@ -146,26 +136,21 @@ PokeCenterNurseScript:
 	yesorno
 	iffalsefwd .goodbye
 .heal_pokemon
-	farwritetext NurseTakePokemonText
-	pause 20
-	turnobject LAST_TALKED, LEFT
-	pause 10
 	special HealParty
 	special SaveMusic
 	playmusic MUSIC_NONE
 	setval 0 ; Machine is at a Pokemon Center
 	special HealMachineAnim
-	pause 30
 	special RestoreMusic
-	turnobject LAST_TALKED, DOWN
 	pause 10
 
 	checkphonecall ; elm already called about pokerus
-	iftruefwd .no
+	iftruefwd .done
 	checkflag ENGINE_CAUGHT_POKERUS ; nurse already talked about pokerus
-	iftruefwd .no
+	iftruefwd .done
 	special SpecialCheckPokerus
 	iftruefwd .pokerus
+	sjumpfwd .done
 .no
 
 	farwritetext NurseReturnPokemonText
@@ -180,7 +165,6 @@ PokeCenterNurseScript:
 	pause 10
 
 	waitbutton
-	closetext
 	sjumpfwd .done
 
 .pokerus
@@ -189,18 +173,17 @@ PokeCenterNurseScript:
 	iftruefwd .pokerus_comcenter
 	farwritetext NursePokerusText
 	waitbutton
-	closetext
 	sjumpfwd .pokerus_done
 
 .pokerus_comcenter
 	farwritetext PokeComNursePokerusText
 	waitbutton
-	closetext
 
 .pokerus_done
 	setflag ENGINE_CAUGHT_POKERUS
 	specialphonecall SPECIALCALL_POKERUS
 .done
+	closetext
 	turnobject PLAYER, DOWN
 	end
 

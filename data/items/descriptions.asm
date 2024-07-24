@@ -688,8 +688,8 @@ EverstoneDesc:
 	done
 
 ExpShareDesc:
-	text "Shares battle Exp."
-	next "Points. (Hold)"
+	text "Ancient relic from"
+	next "a forgotton age."
 	done
 
 CheriBerryDesc:
